@@ -13,6 +13,13 @@ import MediaOverlay from '@enact/sandstone/MediaOverlay';
 import VideoPlayer from '@enact/sandstone/VideoPlayer';
 import { MediaControls } from '@enact/sandstone/MediaPlayer';
 
+import {useUserStore} from "../zustand"
+
+
+const API_URL = 'http://3.36.212.250:3000'; // Your API URL 
+
+
+
 const MyVideos = () => {
   const data = useConfigs();
   const { isPopupOpen, handlePopupOpen, handlePopupClose } = usePopup();
@@ -33,6 +40,9 @@ const MyVideos = () => {
   const [comments, setComments] = useState([]); // State for comments
   const [newComment, setNewComment] = useState(''); // State for new comment input
   const [isCommentsOpen, setIsCommentsOpen] = useState(false); // State to manage comments section visibility
+
+
+  const {user, setUser} = useUserStore();
 
   const [videos, setVideos] = useState([
     { id: 1, text: 'Biotech', src: 'https://videos.pexels.com/video-files/3195394/3195394-uhd_3840_2160_25fps.mp4', content: 'Biotech content', thumbnail: 'https://example.com/thumbnail.jpg' },
@@ -267,6 +277,7 @@ const MyVideos = () => {
                 </div>
               </>
             )}
+            
           </Alert>
         </div>
       </div>
